@@ -16,7 +16,6 @@ public interface PageUtil {
         if (pageSize < 1) {
             pageSize = DEFAULT_PAGE_LIMIT;
         }
-        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
-        return pageable;
+        return PageRequest.of(pageNumber - 1, pageSize);
     }
 }

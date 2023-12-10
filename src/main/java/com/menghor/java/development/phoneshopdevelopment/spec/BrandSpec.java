@@ -18,11 +18,11 @@ public class BrandSpec implements Specification<Brand> {
     List<Predicate> predicates = new ArrayList<>();
 
     @Override
-    public Predicate toPredicate(Root<Brand> brand, CriteriaQuery<?> query, CriteriaBuilder cb) {
+    public Predicate toPredicate(Root<Brand> brand, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         if(brandFilter.getName() != null) {
             //Predicate name = brand.get("name").in(brandFilter.getName());
 
-            Predicate name = cb.like(cb.upper(brand.get("name")), "%"+brandFilter.getName().toUpperCase() + "%");
+            Predicate name = criteriaBuilder.like(criteriaBuilder.upper(brand.get("name")), "%"+brandFilter.getName().toUpperCase() + "%");
             predicates.add(name);
         }
 
@@ -31,6 +31,6 @@ public class BrandSpec implements Specification<Brand> {
             predicates.add(id);
         }
         //return cb.and(predicates.toArray(new Predicate[0]));
-        return cb.and(predicates.toArray(Predicate[]::new));
+        return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
     }
 }

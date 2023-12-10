@@ -45,28 +45,6 @@ public class BrandServiceImpl implements BrandService {
         return brandRepository.findByNameContaining(name);
     }
 
-    /*
-	@Override
-	public List<Brand> getBrands(Map<String, String> params) {
-		BrandFilter brandFilter = new BrandFilter();
-
-		if(params.containsKey("name")) {
-			String name = params.get("name");
-			brandFilter.setName(name);
-		}
-
-		if(params.containsKey("id")) {
-			String id = params.get("id");
-			brandFilter.setId(Integer.parseInt(id));
-		}
-
-		BrandSpec brandSpec = new BrandSpec(brandFilter);
-
-		return brandRepository.findAll(brandSpec);
-
-	}
-	*/
-
     @Override
     public Page<Brand> getBrands(Map<String, String> params) {
         BrandFilter brandFilter = new BrandFilter();
@@ -98,8 +76,7 @@ public class BrandServiceImpl implements BrandService {
         //Pageable
         //Page<Brand> findAll = brandRepository.findAll(brandSpec, org.springframework.data.domain.Pageable.ofSize(0));
 
-        Page<Brand> page = brandRepository.findAll(brandSpec, pageable);
-        return page;
+        return brandRepository.findAll(brandSpec, pageable);
     }
 
 
